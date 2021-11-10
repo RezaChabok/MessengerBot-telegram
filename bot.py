@@ -10,7 +10,7 @@ telepot.api._pools = {
 telepot.api._onetime_pool_spec =(urllib3.ProxyManager, dict(proxy_url= proxy_url, num_pools=1, maxsize=1,retries=False , timeout=30))
 secret="bot"
 bot = telepot.Bot('Token')
-bot.setWebhook("https://reza3977.pythonanywhere.com/{}".format(secret), max_connections =1)
+bot.setWebhook("domain{}".format(secret), max_connections =1)
 
 def handle(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
