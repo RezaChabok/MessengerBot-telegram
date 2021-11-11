@@ -30,6 +30,7 @@ def handle(msg):
         bot.sendMessage(chat_id,"sent.")
     else:
         bot.forwardMessage('admin_chat_id', msg['chat']['id'], msg['message_id'])
+        bot.sendMessage(chat_id,"sent.")
 
 
 
