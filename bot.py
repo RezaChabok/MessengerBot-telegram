@@ -18,24 +18,11 @@ def handle(msg):
         text= msg['text']
         if text == '/start':
             bot.sendMessage(chat_id,'send your messages.')
-           # bot.sendMessage(chat_id,Ismember(chat_id))
-           # x = open("members.txt", "a")
-           # x.write(''.format(chat_id))
-           # z = open("members.txt", "r")
-           # bot.sendMessage(chat_id,z.read())
-        elif text[0:4] == '/say':#chat with users 
-                    if chat_id == admin_chat_id:
-                        u_id=''
-                        textlen=0
-                        for i in text[5:20]:
-                            textlen += 1
-                            if i != '|':
-                                u_id += i
-                            if i == '|':
-                                break
-                        u_id=int(u_id)
-                        bot.sendMessage(u_id,text[5 + textlen:])
-                        bot.sendMessage('admin_chat_id',text[5 + textlen:]+"  was sent.")#for example admin send /say user_id |hi and bot send hi to user_id.
+        if chat_id == admin_chat_id:#reply messages
+            try:
+                bot.sendMessage(msg['reply_to_message']['forward_from']['id'],msg["text"])
+                bot.sendMessage(chat_id,'sent')
+            except KeyError :pass#For example, the admin replyes to a user message and sends hi, and the robot sends hi to the same user whose message was replyed.
         bot.sendMessage('admin_chat_id',msg)
         mention="tg://openmessage?user_id={}".format(chat_id)
         bot.sendMessage('admin_chat_id',mention)
